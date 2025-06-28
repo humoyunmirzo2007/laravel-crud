@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Response;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Services\BrandService;
@@ -18,39 +19,32 @@ class BrandController extends Controller
 
     public function getAll()
     {
-        return response()->json([
-            "data" => $this->brandService->getAll()
-        ], 200);
+        return Response::success(data: $this->brandService->getAll());
     }
 
     public function getAllActive()
     {
-        return response()->json([
-            "data" => $this->brandService->getAllActive()
-        ], 200);
+        return Response::success(data: $this->brandService->getAllActive());
     }
 
     public function getById($id)
     {
         try {
             $brand = $this->brandService->getById($id);
-            return response()->json([
-                "data" => $brand
-            ], 200);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.brand")]),
-            ], 404);
+            return Response::success(data: $brand);
+        } catch (ModelNotFoundException) {
+            return Response::notFoundError("brand");
         }
     }
     public function create(StoreBrandRequest $request)
     {
         $brand = $this->brandService->create($request->validated());
 
-        return response()->json([
-            "message" => __("messages.created_success", ["item" => __("messages.brand")]),
-            "data" => $brand
-        ], 201);
+        return Response::success(
+            t("created_success", "brand"),
+            $brand,
+            201
+        );
     }
 
     public function update(UpdateBrandRequest $request, int $id)
@@ -58,14 +52,12 @@ class BrandController extends Controller
         try {
             $brand = $this->brandService->update($id, $request->validated());
 
-            return response()->json([
-                "message" => __("messages.updated_success", ["item" => __("messages.brand")]),
-                "data" => $brand
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.brand")]),
-            ], 404);
+            return Response::success(
+                t("updated_success", "brand"),
+                $brand,
+            );
+        } catch (ModelNotFoundException) {
+            return Response::notFoundError("brand");
         }
     }
 
@@ -73,30 +65,26 @@ class BrandController extends Controller
     {
         try {
             $brand = $this->brandService->updateActive($id);
-            $brandStatus = $brand->active ? __("messages.activated") : __("messages.deactivated");
 
-            return response()->json([
-                "message" => __("messages.active_updated_success", ["status" => $brandStatus, "item" => __("messages.brand")]),
-                "data" => $brand
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.brand")]),
-            ], 404);
+            return Response::success(
+                t('active_updated_success', 'brand'),
+                $brand
+            );
+        } catch (ModelNotFoundException) {
+            return Response::notFoundError("brand");
         }
     }
+
 
     public function delete(int $id)
     {
         try {
             $this->brandService->delete($id);
-            return response()->json([
-                "message" => __("messages.deleted_success", ["item" => __("messages.brand")])
-            ]);
-        } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.brand")]),
-            ], 404);
+            return Response::success(
+                t('deleted_success', 'brand'),
+            );
+        } catch (ModelNotFoundException) {
+            return Response::notFoundError("brand");
         }
     }
 }

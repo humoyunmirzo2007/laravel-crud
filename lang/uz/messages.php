@@ -19,7 +19,7 @@ return [
     "not_found" => ":item topilmadi",
     "created_success" => ":item muvaffaqiyatli qo'shildi",
     "updated_success" => ":item ma'lumotlari muvaffaqiyatli yangilandi",
-    "active_updated_success" => ":item muvaffaqiyatli :status",
+    "active_updated_success" => ":item faollik holati muvaffaqiyatli o'zgartirildi",
     "deleted_success" => ":item muvaffaqiyatli o'chirildi",
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\Response;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Services\CategoryService;
@@ -18,29 +19,21 @@ class CategoryController extends Controller
 
     public function getAll()
     {
-        return response()->json([
-            "data" => $this->categoryService->getAll()
-        ], 200);
+        return Response::success(data: $this->categoryService->getAll());
     }
 
     public function getAllActive()
     {
-        return response()->json([
-            "data" => $this->categoryService->getAllActive()
-        ], 200);
+        return Response::success(data: $this->categoryService->getAllActive());
     }
 
     public function getById(int $id)
     {
         try {
             $category = $this->categoryService->getById($id);
-            return response()->json([
-                "data" => $category
-            ], 200);
+            return Response::success(data: $category);
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.category")]),
-            ], 404);
+            return Response::notFoundError("category");
         }
     }
 
@@ -48,10 +41,11 @@ class CategoryController extends Controller
     {
         $category = $this->categoryService->create($request->validated());
 
-        return response()->json([
-            "message" => __("messages.created_success", ["item" => __("messages.category")]),
-            "data" => $category
-        ], 201);
+        return Response::success(
+            t("created_success", "category"),
+            $category,
+            201
+        );
     }
 
     public function update(int $id, UpdateCategoryRequest $request)
@@ -59,14 +53,12 @@ class CategoryController extends Controller
         try {
             $category = $this->categoryService->update($id, $request->validated());
 
-            return response()->json([
-                "message" => __("messages.updated_success", ["item" => __("messages.category")]),
-                "data" => $category
-            ], 200);
+            return Response::success(
+                t("updated_success", "category"),
+                $category
+            );
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.category")]),
-            ], 404);
+            return Response::notFoundError("category");
         }
     }
 
@@ -74,16 +66,13 @@ class CategoryController extends Controller
     {
         try {
             $category = $this->categoryService->updateActive($id);
-            $categoryStatus = $category->active ? __("messages.activated") : __("messages.deactivated");
 
-            return response()->json([
-                "message" => __("messages.active_updated_success", ["status" => $categoryStatus, "item" => __("messages.category")]),
-                "data" => $category
-            ], 200);
+            return Response::success(
+                t("active_updated_success", "category"),
+                $category
+            );
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.category")]),
-            ], 404);
+            return Response::notFoundError("category");
         }
     }
 
@@ -92,13 +81,11 @@ class CategoryController extends Controller
         try {
             $this->categoryService->delete($id);
 
-            return response()->json([
-                "message" => __("messages.deleted_success", ["item" => __("messages.category")])
-            ]);
+            return Response::success(
+                 t("deleted_success", "category")
+            );
         } catch (ModelNotFoundException $e) {
-            return response()->json([
-                "message" => __("messages.not_found", ["item" => __("messages.category")]),
-            ], 404);
+            return Response::notFoundError("category");
         }
     }
 }
