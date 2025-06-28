@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StoreCategoryRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -14,10 +14,11 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "bail|required|min:3|max:255|unique:categories,name",
-            "parent_id" => "bail|nullable|numeric|exists:categories,id"
+            "name" => ["bail", "required", "min:3", "max:255", "unique:categories,name"],
+            "parent_id" => ["bail", "nullable", "numeric", "exists:categories,id"],
         ];
     }
+
 
     public function attributes()
     {
@@ -29,7 +30,7 @@ class StoreCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'parent_id.exists' => __("validation.exists", [
+            "parent_id.exists" => __("validation.exists", [
                 "attribute" => "ID",
                 "item" => __("messages.category")
             ]),

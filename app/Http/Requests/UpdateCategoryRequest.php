@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateCategoryRequest extends FormRequest
+class UpdateCategoryRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -27,7 +27,7 @@ class UpdateCategoryRequest extends FormRequest
                 "nullable",
                 "numeric",
                 "exists:categories,id",
-                Rule::notIn([$this->route('id')])
+                Rule::notIn([$this->route("id")])
             ]
         ];
     }
@@ -43,12 +43,12 @@ class UpdateCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'parent_id.exists' => __("validation.exists", [
+            "parent_id.exists" => __("validation.exists", [
                 "attribute" => "ID",
                 "item" => __("messages.category")
             ]),
-            'parent_id.not_in' => __('validation.not_in', [
-                'attribute' => __("messages.parent_category")
+            "parent_id.not_in" => __("validation.not_in", [
+                "attribute" => __("messages.parent_category")
             ]),
         ];
     }

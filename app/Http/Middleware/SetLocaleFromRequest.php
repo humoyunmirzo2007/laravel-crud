@@ -12,12 +12,12 @@ class SetLocaleFromRequest
 
     public function handle(Request $request, Closure $next): Response
     {
-        $locale = $request->header('Accept-Language');
+        $locale = $request->header("Accept-Language");
 
-        if (in_array($locale, ['uz', 'ru'])) {
+        if (in_array($locale, ["uz", "ru"])) {
             App::setlocale($locale);
         } else {
-            App::setlocale(config('app.locale'));
+            App::setlocale(config("app.locale"));
         }
         return $next($request);
     }

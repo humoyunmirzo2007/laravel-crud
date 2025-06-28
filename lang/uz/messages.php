@@ -13,12 +13,14 @@ return [
     "category" => "Kategoriya",
     "category_name" => "Kategoriya nomi",
     "parent_category" => "Yuqori kategoriya",
+    "product" => "Mahsulot",
+    "product_name" => "Mahsulot nomi",
     // CRUD STATUS MESSAGES
     "not_found" => ":item topilmadi",
     "created_success" => ":item muvaffaqiyatli qo'shildi",
     "updated_success" => ":item ma'lumotlari muvaffaqiyatli yangilandi",
     "active_updated_success" => ":item muvaffaqiyatli :status",
-    "delete_success" => ":item muvaffaqiyatli o'chirildi",
+    "deleted_success" => ":item muvaffaqiyatli o'chirildi",
 
 
     // ADDITIONAL

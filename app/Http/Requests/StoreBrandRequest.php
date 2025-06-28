@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBrandRequest extends FormRequest
+class StoreBrandRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,7 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => "required|min:3|max:255|unique:brands,name",
+            "name" => ["required", "min:3", "max:255", "unique:brands,name"],
         ];
     }
 
@@ -22,7 +22,7 @@ class StoreBrandRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => __("messages.brand_name"),
+            "name" => __("messages.brand_name"),
         ];
     }
 }

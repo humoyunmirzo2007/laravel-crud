@@ -16,17 +16,17 @@ class CategoryController extends Controller
         $this->categoryService = $categoryService;
     }
 
-    public function index()
+    public function getAll()
     {
         return response()->json([
             "data" => $this->categoryService->getAll()
         ], 200);
     }
 
-    public function getActive()
+    public function getAllActive()
     {
         return response()->json([
-            "data" => $this->categoryService->getActive()
+            "data" => $this->categoryService->getAllActive()
         ], 200);
     }
 
@@ -77,7 +77,7 @@ class CategoryController extends Controller
             $categoryStatus = $category->active ? __("messages.activated") : __("messages.deactivated");
 
             return response()->json([
-                "message" => __("messages.active_updated_success", ['status' => $categoryStatus, "item" => __("messages.category")]),
+                "message" => __("messages.active_updated_success", ["status" => $categoryStatus, "item" => __("messages.category")]),
                 "data" => $category
             ], 200);
         } catch (ModelNotFoundException $e) {
@@ -93,7 +93,7 @@ class CategoryController extends Controller
             $this->categoryService->delete($id);
 
             return response()->json([
-                "message" => __("messages.delete_success", ["item" => __("messages.category")])
+                "message" => __("messages.deleted_success", ["item" => __("messages.category")])
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json([

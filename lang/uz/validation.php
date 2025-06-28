@@ -21,5 +21,11 @@ return [
         "username" => "Foydalanuvchi nomi",
         "password" => "Parol",
         "name" => "Nomi",
+        "price" => "Narx",
+        "description" => "Tavsif",
+        "brand_id" => "Brend",
+        "category_id" => "Kategoriya",
+        "image" => "Rasm",
     ],
+
 ];
