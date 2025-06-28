@@ -16,17 +16,17 @@ class BrandController extends Controller
         $this->brandService = $brandService;
     }
 
-    public function index()
+    public function getAll()
     {
         return response()->json([
             "data" => $this->brandService->getAll()
         ], 200);
     }
 
-    public function getActive()
+    public function getAllActive()
     {
         return response()->json([
-            "data" => $this->brandService->getActive()
+            "data" => $this->brandService->getAllActive()
         ], 200);
     }
 
@@ -39,7 +39,7 @@ class BrandController extends Controller
             ], 200);
         } catch (ModelNotFoundException $e) {
             return response()->json([
-                'message' => __("messages.not_found", ["item" => __("messages.brand")]),
+                "message" => __("messages.not_found", ["item" => __("messages.brand")]),
             ], 404);
         }
     }
@@ -76,7 +76,7 @@ class BrandController extends Controller
             $brandStatus = $brand->active ? __("messages.activated") : __("messages.deactivated");
 
             return response()->json([
-                "message" => __("messages.active_updated_success", ['status' => $brandStatus, "item" => __("messages.brand")]),
+                "message" => __("messages.active_updated_success", ["status" => $brandStatus, "item" => __("messages.brand")]),
                 "data" => $brand
             ]);
         } catch (ModelNotFoundException $e) {
@@ -91,7 +91,7 @@ class BrandController extends Controller
         try {
             $this->brandService->delete($id);
             return response()->json([
-                "message" => __("messages.delete_success", ["item" => __("messages.brand")])
+                "message" => __("messages.deleted_success", ["item" => __("messages.brand")])
             ]);
         } catch (ModelNotFoundException $e) {
             return response()->json([

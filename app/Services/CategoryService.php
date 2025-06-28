@@ -18,9 +18,9 @@ class CategoryService
         return $this->categoryRepository->getAll();
     }
 
-    public function  getActive()
+    public function  getAllActive()
     {
-        return $this->categoryRepository->getActive();
+        return $this->categoryRepository->getAllActive();
     }
 
     public function  getById(int $id)

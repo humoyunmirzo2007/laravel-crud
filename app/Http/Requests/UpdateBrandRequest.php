@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateBrandRequest extends FormRequest
+class UpdateBrandRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -28,7 +28,7 @@ class UpdateBrandRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => __("messages.brand_name"),
+            "name" => __("messages.brand_name"),
         ];
     }
 }

@@ -12,7 +12,7 @@ class BrandRepository implements BrandRepositoryInterface
         return Brand::orderBy("id", "DESC")->get();
     }
 
-    public function getActive()
+    public function getAllActive()
     {
         return Brand::where("active", true)->orderBy("id", "DESC")->get();
     }

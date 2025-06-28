@@ -18,7 +18,7 @@ return [
     "created_success" => ":item успешно добавлен.",
     "updated_success" => "Данные :item успешно обновлены.",
     "active_updated_success" => ":item успешно :status.",
-    "delete_success" => ":item успешно удалён.",
+    "deleted_success" => ":item успешно удалён.",
 
     // ADDITIONAL
     "activated" => "активирован",

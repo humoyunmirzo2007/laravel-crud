@@ -19,9 +19,9 @@ class BrandService
         return $this->brandRepository->getAll();
     }
 
-    public function  getActive()
+    public function  getAllActive()
     {
-        return $this->brandRepository->getActive();
+        return $this->brandRepository->getAllActive();
     }
 
     public function  getById(int $id)

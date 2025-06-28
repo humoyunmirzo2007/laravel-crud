@@ -13,7 +13,7 @@ class CategoryRepository implements CategoryRepositoryInterface
             ->get();
     }
 
-    public function getActive()
+    public function getAllActive()
     {
         return Category::where("active", true)
             ->orderBy("id", "DESC")->get();
