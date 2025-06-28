@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface BrandRepositoryInterface
+interface CategoryRepositoryInterface
 {
     public function getAll();
     public function getActive();

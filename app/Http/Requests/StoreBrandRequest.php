@@ -25,5 +25,4 @@ class StoreBrandRequest extends FormRequest
             'name' => __("messages.brand_name"),
         ];
     }
-    
 }
