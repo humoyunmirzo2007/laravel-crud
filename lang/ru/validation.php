@@ -6,7 +6,7 @@ return [
     "min" => ["string" => "Поле :attribute должно содержать не менее :min символов."],
     "max" => ["string" => "Поле :attribute не должно превышать :max символов."],
     "confirmed" => "Поле :attribute не подтверждено.",
-    "unique" => "Значение поля :attribute уже используется.",
+    "unique" => "Значение поля :attribute уже существует.",
     "attributes" => [
         "first_name" => "Имя",
         "last_name" => "Фамилия",
