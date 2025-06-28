@@ -6,7 +6,7 @@ return [
     "min" => ["string" => ":attribute kamida :min belgidan iborat bo‘lishi kerak."],
     "max" => ["string" => ":attribute maksimal :max belgidan oshmasligi kerak."],
     "confirmed" => ":attribute tasdiqlanmagan.",
-    "unique" => ":attribute allaqachon mavjud.",
+    "unique" => "Bu nom bo'yicha :attribute allaqachon mavjud.",
     "attributes" => [
         "first_name" => "Ism",
         "last_name" => "Familiya",
