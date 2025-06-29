@@ -12,4 +12,10 @@ return [
     "brand_id" => "Brend",
     "category_id" => "Kategoriya",
     "image" => "Rasm",
+    "type" => "Tur",
+    "products" => "Mahsulotlar",
+    "product_id" => "Mahsulot",
+    "quantity" => "Miqdor",
+    "products.*.product_id" => "mahsulot",
+    "products.*.quantity" => "miqdor",
 ];

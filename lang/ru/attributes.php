@@ -12,4 +12,8 @@ return [
     "brand_id" => "Бренд",
     "category_id" => "Категория",
     "image" => "Изображение",
+    "type" => "Тип",
+    "products" => "Товары",
+    "product_id" => "Товар",
+    "quantity" => "Количество",
 ];
