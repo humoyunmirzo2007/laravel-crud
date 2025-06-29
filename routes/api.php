@@ -4,10 +4,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductInvoiceController;
 use Illuminate\Support\Facades\Route;
 
 // AUTH
-
 Route::prefix(("auth"))->group(function () {
     Route::post("register", [AuthController::class, "register"]);
     Route::post("login", [AuthController::class, "login"]);
@@ -48,4 +48,13 @@ Route::prefix("products")->middleware("auth:sanctum")->group(function () {
     Route::post("update/{id}", [ProductController::class, "update"]);
     Route::put("update-active/{id}", [ProductController::class, "updateActive"]);
     Route::delete("delete/{id}", [ProductController::class, "delete"]);
+});
+
+// PRODUCT INVOICES
+Route::prefix("product-invoices")->middleware("auth:sanctum")->group(function () {
+    Route::get("get-all", [ProductInvoiceController::class, "getAll"]);
+    Route::get("get-by-id/{id}", [ProductInvoiceController::class, "getById"]);
+    Route::post("create", [ProductInvoiceController::class, "create"]);
+    Route::put("approve/{id}", [ProductInvoiceController::class, "approve"]);
+    Route::delete("delete/{id}", [ProductInvoiceController::class, "delete"]);
 });

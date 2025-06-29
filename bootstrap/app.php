@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\SetAccept;
 use App\Http\Middleware\SetLocaleFromRequest;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -14,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->append(SetLocaleFromRequest::class);
+        $middleware->append(SetAccept::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
