@@ -29,6 +29,16 @@ class User extends Authenticatable
         return $this->hasMany(ProductInvoiceProduct::class);
     }
 
+    public function inputProducts(): HasMany
+    {
+        return $this->hasMany(InputProduct::class);
+    }
+
+    public function outputProducts(): HasMany
+    {
+        return $this->hasMany(OutputProduct::class);
+    }
+
     protected function casts(): array
     {
         return [

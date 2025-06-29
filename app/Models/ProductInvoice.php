@@ -15,6 +15,16 @@ class ProductInvoice extends Model
         return $this->hasMany(ProductInvoiceProduct::class);
     }
 
+    public function inputProducts(): HasMany
+    {
+        return $this->hasMany(InputProduct::class);
+    }
+
+    public function outputProducts(): HasMany
+    {
+        return $this->hasMany(OutputProduct::class);
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

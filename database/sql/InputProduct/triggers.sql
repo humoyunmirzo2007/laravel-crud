@@ -1,0 +1,3 @@
+CREATE OR REPLACE TRIGGER trigger_update_products_residue_when_input_product_create
+AFTER
+INSERT ON input_products FOR EACH ROW EXECUTE FUNCTION update_products_residue_when_create_input_product();
